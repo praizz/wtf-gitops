@@ -1,0 +1,5 @@
+resources:
+  - argocd.yaml
+  - cert-manager.yaml
+  - nginx-controller.yaml
+

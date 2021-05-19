@@ -1,0 +1,20 @@
+apiVersion: cert-manager.io/v1alpha3
+kind: ClusterIssuer
+metadata:
+  name: lets-encrypt-nginx
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+spec:
+  acme:
+    # The ACME server URL
+    server: "https://acme-v02.api.letsencrypt.org/directory"
+#    server: "https://acme-staging-v02.api.letsencrypt.org/directory"
+    email: praise.adanlawo@deimos.co.za
+    # Name of a secret used to store the ACME account private key
+    privateKeySecretRef:
+      name: wtf-nginx-issuer-key
+    # Enable the HTTP-01 challenge provider
+    solvers:
+    - http01:
+        ingress:
+          class: nginx
